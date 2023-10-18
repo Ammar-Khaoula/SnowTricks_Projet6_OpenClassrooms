@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Repository\UsersRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -28,14 +30,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private $is_verified = false;
+
     #[ORM\Column(length: 255)]
     private ?string $full_name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' =>'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
+
     public function __construct()
     {
-        $this->created_at = new DateTime('now');
+        $this->created_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -51,6 +57,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): static
+    {
+        $this->email = $is_verified;
 
         return $this;
     }
