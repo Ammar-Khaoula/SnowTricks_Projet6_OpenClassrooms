@@ -12,7 +12,7 @@
             {{ form_errors(registrationForm) }}     
             {{ form_start(registrationForm) }}
             <h1>inscrivez-vous</h1>
-            {{form_row(registrationForm.full_name)}}
+            {{form_row(registrationForm.name)}}
             {{form_row(registrationForm.email)}}
             {{form_row(registrationForm.plainPassword)}}
             <button type="submit" class="btn btn-warning">Register</button>

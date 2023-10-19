@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['name'], message: 'There is already an account with this name')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -31,8 +32,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
 
-    #[ORM\Column(length: 255)]
-    private ?string $full_name = null;
+    #[ORM\Column(length: 100, unique: true)]
+    private ?string $name = null;
 
     #[ORM\Column(options: ['default' =>'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
@@ -40,9 +41,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $is_verified = false;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $resetToken = null;
-
 
 
     public function __construct()
@@ -74,7 +74,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->name;
     }
 
     /**
@@ -120,14 +120,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFullName(): ?string
+    public function getName(): ?string
     {
-        return $this->full_name;
+        return $this->name;
     }
 
-    public function setFullName(string $full_name): static
+    public function setName(string $name): static
     {
-        $this->full_name = $full_name;
+        $this->name = $name;
 
         return $this;
     }
@@ -160,13 +160,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->resetToken;
     }
 
-    public function setResetToken(string $resetToken): static
+    public function setResetToken(?string $resetToken): static
     {
         $this->resetToken = $resetToken;
 
         return $this;
     }
 
-    
 
 }
