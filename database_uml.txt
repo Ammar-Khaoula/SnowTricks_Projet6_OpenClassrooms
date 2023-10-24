@@ -1,0 +1,32 @@
+1- User
+    -name
+    -email
+    -password
+
+2- tricks
+    - name
+    - slug
+    - discription 
+    - category
+    - vedios
+    - imageUrls
+    - created_at
+    - updated_at =>puet etre null
+
+
+3- categories
+    -name
+    - slug
+    - description
+    - imageUrl
+    - trick
+     - createdAt
+    - updatedAt
+
+4-comments
+    -content
+    - trick
+    - author
+    - createdAt
+    - updatedAt
+ 

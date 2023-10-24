@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UsersRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -44,10 +46,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $resetToken = null;
 
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comments::class)]
+    private Collection $comments;
+
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +169,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResetToken(?string $resetToken): static
     {
         $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comments>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getAuthor() === $this) {
+                $comment->setAuthor(null);
+            }
+        }
 
         return $this;
     }
