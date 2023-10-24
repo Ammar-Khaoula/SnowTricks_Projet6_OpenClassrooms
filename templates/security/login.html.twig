@@ -3,6 +3,9 @@
 {% block title %}connexion{% endblock %}
 
 {% block body %}
+<section class="container login">
+    <div class="row">
+        <div class="col">
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -13,22 +16,17 @@
             vous êtes connecté comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me deconnecter</a>
         </div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Me connecter</h1>
-    <label for="inputName">votre nom</label>
-    <input type="text" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="name" required autofocus>
-    <label for="inputPassword">mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        me connecter
-    </button>
-    <button class="btn btn-lg btn-warning" type="submit">
-        <a href="{{ path('forgotten_password')}}" class="btn btn-lg btn-warning"> mot de passe oublier </a>
-    </button>
+            <h1 class="h3 mb-3 font-weight-normal">CONNEXION</h1>
+            <label for="inputName">votre nom</label>
+            <input type="text" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="name" required autofocus>
+            <label for="inputPassword">mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="btn btn-lg btn-primary" type="submit"> Me Connecter </button>
+            <p>Pas encore de compte ?<a href="{{ path('app_register')}}"> Inscription </a></p>
+            <p>Vous avez<a href="{{ path('forgotten_password')}}"> oublié votre mot de passe</a> ? </p>
+        </div>
+    </div>
+<section>
 </form>
 {% endblock %}

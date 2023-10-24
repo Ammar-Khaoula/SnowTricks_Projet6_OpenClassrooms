@@ -1,12 +1,75 @@
-.ccc {
-    color: rgb(226, 43, 205);
+.login {
+    border: 0px solid black;
     margin-top: 120px;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
+}
+
+.login h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    color: rgb(248, 161, 95);
+}
+
+.login label {
+    padding: 10px;
+}
+
+.login button {
+    margin: 10px;
+    background: linear-gradient(to right, #9b6d02, #fac273);
+    border: 0px solid black;
+    font-weight: bolder;
+}
+
+.login a {
+    color: rgb(251, 135, 46);
 }
 
 .register {
-    margin-top: 100px;
+    border: 0px solid black;
+    margin-top: 120px;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
 }
 
 .register h1 {
-    color: aqua;
+    text-align: center;
+    letter-spacing: 3px;
+    color: rgb(248, 161, 95);
+}
+
+.register button {
+    margin: 10px;
+    background: linear-gradient(to right, #fac273, #9b6d02);
+    border: 0px solid black;
+    color: white;
+    font-weight: bolder;
+}
+
+.resetPass {
+    border: 0px solid black;
+    margin-top: 120px;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
+}
+
+.resetPass h1 {
+    font-size: 25px;
+    text-align: center;
+    color: rgb(248, 161, 95);
+}
+
+.resetPass button {
+    margin: 10px;
+    background: linear-gradient(to right, #fac273, #9b6d02);
+    border: 0px solid black;
+    color: white;
+    font-weight: bolder;
 }
