@@ -1,3 +1,7 @@
+.bgHeader {
+    background-color: #065D95;
+}
+
 .login {
     border: 0px solid black;
     margin-top: 120px;
@@ -73,3 +77,30 @@
     color: white;
     font-weight: bolder;
 }
+
+
+/*homePage*/
+
+.homePageNav {
+    background-image: url(../images/img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+    position: relative;
+    bottom: 40px;
+    padding-top: 20%;
+    padding-left: 30px;
+}
+
+.homePageNav h1 {
+    color: white;
+    letter-spacing: 5px;
+}
+
+.homePageNav h3 {
+    color: #c8e6f8;
+}
+
+
+/*Home: singlePage*/

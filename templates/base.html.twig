@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Ammar | site_communautaire{% endblock %}</title>
+        <title>{% block title %}SnowTricks{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <!-- style sheets -->
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -25,6 +25,8 @@
         </div>
         {% endif %}
         {% include("header/__flash.html.twig") %}
-        {% block body %}{% endblock %}
+        {% block body %}
+        <div class="container"></div>
+        {% endblock %}
     </body>
 </html>

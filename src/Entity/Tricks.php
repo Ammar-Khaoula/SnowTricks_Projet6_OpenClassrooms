@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\TricksRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TricksRepository;
+use EsperoSoft\DateFormat\DateFormat;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: TricksRepository::class)]
 class Tricks
@@ -25,10 +27,7 @@ class Tricks
     private ?string $discription = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $imageUrls = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $videos = null;
+    private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'tricks')]
     private ?Category $categories = null;
@@ -42,10 +41,23 @@ class Tricks
     #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Comments::class, orphanRemoval: true)]
     private Collection $comments;
 
+    private ?string $fromNow = null;
+
+    #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: ImageUrls::class, orphanRemoval: true)]
+    private Collection $imageUrls;
+
+    #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: VideoUrls::class, orphanRemoval: true)]
+    private Collection $videoUrls;
+
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->setCreatedAt(new \DateTimeImmutable());
+        $this->imageUrls = new ArrayCollection();
+        $this->videoUrls = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -61,6 +73,7 @@ class Tricks
     public function setName(string $name): static
     {
         $this->name = $name;
+        $this->setSlug((new Slugify())->slugify($this->name));
 
         return $this;
     }
@@ -89,29 +102,18 @@ class Tricks
         return $this;
     }
 
-    public function getImageUrls(): ?string
+    public function getImage(): ?string
     {
-        return $this->imageUrls;
+        return $this->image;
     }
 
-    public function setImageUrls(string $imageUrls): static
+    public function setImage(string $image): static
     {
-        $this->imageUrls = $imageUrls;
+        $this->image = $image;
 
         return $this;
     }
 
-    public function getVideos(): ?string
-    {
-        return $this->videos;
-    }
-
-    public function setVideos(?string $videos): static
-    {
-        $this->videos = $videos;
-
-        return $this;
-    }
 
     public function getCategories(): ?Category
     {
@@ -178,4 +180,75 @@ class Tricks
 
         return $this;
     }
+    /**
+     * Get the value of fromNow
+     * 
+     * @return string
+     */
+    public function getfromNow(): ?string
+    {
+        return DateFormat::fromNow($this->createdAt);
+    }
+
+    /**
+     * @return Collection<int, ImageUrls>
+     */
+    public function getImageUrls(): Collection
+    {
+        return $this->imageUrls;
+    }
+
+    public function addImageUrl(ImageUrls $imageUrl): static
+    {
+        if (!$this->imageUrls->contains($imageUrl)) {
+            $this->imageUrls->add($imageUrl);
+            $imageUrl->setTricks($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImageUrl(ImageUrls $imageUrl): static
+    {
+        if ($this->imageUrls->removeElement($imageUrl)) {
+            // set the owning side to null (unless already changed)
+            if ($imageUrl->getTricks() === $this) {
+                $imageUrl->setTricks(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VideoUrls>
+     */
+    public function getVideoUrls(): Collection
+    {
+        return $this->videoUrls;
+    }
+
+    public function addVideoUrl(VideoUrls $videoUrl): static
+    {
+        if (!$this->videoUrls->contains($videoUrl)) {
+            $this->videoUrls->add($videoUrl);
+            $videoUrl->setTricks($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideoUrl(VideoUrls $videoUrl): static
+    {
+        if ($this->videoUrls->removeElement($videoUrl)) {
+            // set the owning side to null (unless already changed)
+            if ($videoUrl->getTricks() === $this) {
+                $videoUrl->setTricks(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

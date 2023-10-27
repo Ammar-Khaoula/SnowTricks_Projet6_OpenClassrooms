@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ trick.name }}{% endblock %}
+
+{% block body %}
+<main class="singlePage">
+    <div class="container-fluid">
+      <div class="row">
+      <div style="background-image: url({{asset('assets/images/' ~ trick.image) }}); background-size: cover; height: 300px; width=300px">
+        <h1>{{trick.name}}</h1>
+      </div>
+      <img src="{{asset('assets/images/' ~ trick.image) }}" class="card-img-top" alt="figure: {{trick.name}}">
+            <div class="">
+
+                <span class="btn btn-info">{{trick.categories}} </span>
+              <p class="card-text">{{trick.discription}}</p>
+              <span>{{trick.fromNow}}</span>             
+              </div>
+            </div>
+          </div>
+</main>
+{% endblock %}
