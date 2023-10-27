@@ -12,7 +12,7 @@
           </li>
           {% if app.user %}
               <li class="nav-item">
-                  <a href="{{ path('app_profile') }}" class="nav-link" aria-disabled="true">mon Compte</a>
+                  <a href=" /profil/{{app.user.id}}" class="nav-link" aria-disabled="true">mon Compte</a>
               </li>
               <li class="nav-item">
                 <a href="{{ path('app_logout') }}" class="nav-link" aria-disabled="true">deconneter</a>
