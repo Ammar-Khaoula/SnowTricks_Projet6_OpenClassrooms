@@ -31,6 +31,11 @@ class Comments
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $author = null;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
