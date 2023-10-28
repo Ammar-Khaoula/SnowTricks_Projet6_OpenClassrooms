@@ -1,22 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container profilUsers">
+    <div class="profilUser">
+        {% if  app.user.avatar is empty %}
+            <img src="{{asset('assets/images/avatar.png') }}">
+        {% else %}
+            <img src="{{asset('assets/images/' ~ app.user.avatar) }}">
+        {% endif %}
+            <h1>
+                {{app.user.name}}
+            </h1>
+    </div>
+            <div class="linkProfil">
+                <a class="btnProfil" href="{{app.user.id}}/edit">modifier votre profile</a>    
+                <a class="btnProfil" href="{{ path('app_ajout_Trick') }}">Ajouter un Trick ☞ </a>
+            </div>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/SnowTricks_Projet6_OpenClassrooms/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/SnowTricks_Projet6_OpenClassrooms/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a></code></li>
-    </ul>
-    <p> {{app.user.name}} </p>
-    <p> {{app.user.email}} </p>
-</div>
 {% endblock %}

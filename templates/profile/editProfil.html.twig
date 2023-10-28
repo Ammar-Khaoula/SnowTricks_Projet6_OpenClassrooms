@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}profil{% endblock %}
+
+{% block body %}
+
+	{{ form_start(userform) }}
+	<div class="container col-8 my-3">
+		{{ form_row(userform.avatar) }}
+		{{form_row(userform.name)}}
+        {{form_row(userform.email)}}
+        {{form_row(userform.plainPassword)}}
+		<button type="submit" class="btn btn-success">Mettre à jour</button>
+	</div>
+	{{ form_end(userform) }}
+
+{% endblock %}
