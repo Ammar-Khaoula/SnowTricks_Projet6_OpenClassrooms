@@ -5,16 +5,31 @@
 {% block body %}
     <div class="container singlePage">
       <div class="row">
-      <div style="background-image: url({{asset('assets/images/' ~ trick.image) }}); background-size: cover; height: 300px;">
-        <h1>{{trick.name}}</h1>
+        <div style="background-image: url({{asset('assets/images/' ~ trick.image) }}); background-size: cover; height: 300px;">
+          <h1>{{trick.name}}</h1>
+        </div>  
+        <div >
+          <span class="btn btn-info">{{trick.categories}} </span>
+          <p class="card-text">{{trick.discription}}</p>
+          <span>{{trick.fromNow}}</span>             
+        </div>
       </div>
-      
-            <div class="">
+      {% if app.user %}
+        <div class="mt-5">
+        <h2 class="text-exl mb-8">commentaire(s)</h2>
+      <div>
+        {{form_start(commentForm)}}
+          {{form_row(commentForm.content)}}
+          <button class="btn btn-info"> poster mon commentaire</button>
+        {{form_end(commentForm)}}
 
-                <span class="btn btn-info">{{trick.categories}} </span>
-              <p class="card-text">{{trick.discription}}</p>
-              <span>{{trick.fromNow}}</span>             
-              </div>
-            </div>
-          </div>
+      </div>
+        {% for comment in trick.comments %}
+          {% include 'comments/index.html.twig' %}
+        </div>
+        {% endfor %}
+      {% endif %}  
+    </div>
+    </div>
+    </div>
 {% endblock %}

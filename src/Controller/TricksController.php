@@ -54,8 +54,6 @@ class TricksController extends AbstractController
                 $trick->setImage($newFilename);
             }
 
-             
-
             //add slug
             $slug = $slugger->slug($trick->getName());
             $trick->setSlug($slug);
