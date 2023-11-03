@@ -2,6 +2,31 @@
 
 {% block title %}Hello CommentsController!{% endblock %}
 
-{% block body %}
-{{form(commetForm)}}
+{% block body %}  
+  <div class="commentsTrick">
+        <div >
+            {% if comment.author.avatar %}
+              <img src="{{asset('assets/images/' ~ comment.author.avatar) }}" alt="{{comment.author}}" >
+            {% else %}
+              <img src="{{asset('assets/images/avatar.png') }}" alt="{{comment.author}}" >
+            {% endif %}
+        </div>
+      <div class="comment col-10">
+          <div class="d-flex">
+            <h5>
+                {{comment.author}}
+            </h5>
+              <h6>{{comment.createdAt| date("d/m/y") }}</h6>
+          </div>
+          <div>
+            <p >
+                {{comment.content}}
+            </p>
+        </div>
+      </div>  
+  </div>  
+
+ 
+
+        
 {% endblock %}

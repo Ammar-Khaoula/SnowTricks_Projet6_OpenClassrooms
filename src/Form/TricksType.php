@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Tricks;
+use App\Form\VideoType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class TricksType extends AbstractType
 {
@@ -47,7 +49,29 @@ class TricksType extends AbstractType
                 'required' => false,
                 'mapped' => false,
                 'multiple' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/gif',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid Image',
+                    ])
+                ],
                 
+            ])
+            ->add('videoUrls', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'label' => false,
+                'entry_options' => ['label' => false],
+                'required' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false
             ])
             ->add('categories')
         ;

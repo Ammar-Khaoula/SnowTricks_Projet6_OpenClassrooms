@@ -29,13 +29,12 @@ class ProfileController extends AbstractController
         public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, UserPasswordHasherInterface $userPasswordHasher, UsersRepository $userRepo, $id): Response
         {
             $user = $userRepo->findOneById($id);
-
+            
             if(!$this->getUser()){
                 return $this->redirectToRoute('app_login');
             }
             
             $userform = $this->createForm(UserType::class, $user);
-            $oldAvatar = $user->getAvatar();
             $userform->handleRequest($request);
             $picture = $userform->get('avatar')->getData();
             

@@ -105,6 +105,39 @@
 
 /*Home: singlePage*/
 
+.commentsTrick {
+    display: flex;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentsTrick img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.comment {
+    border: 1px solid black;
+    padding-left: 10px;
+}
+
+.comment h5 {
+    color: #065D95;
+    text-transform: capitalize;
+    margin-right: 20px;
+}
+
+.comment h6 {
+    margin-top: 5px;
+}
+
+.comment p {
+    font-size: 18px;
+}
+
 
 /*profilUser*/
 
