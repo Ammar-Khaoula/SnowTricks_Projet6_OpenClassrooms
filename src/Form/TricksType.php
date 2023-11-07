@@ -6,8 +6,10 @@ use App\Entity\Tricks;
 use App\Form\VideoType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -44,36 +46,39 @@ class TricksType extends AbstractType
                 ],
                 
             ])
+            ->add('categories')
             ->add('imageUrls', FileType::class,[
-                'label' => 'illustration',
+                'label' => 'illustrations',
                 'required' => false,
                 'mapped' => false,
                 'multiple' => true,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/gif',
-                            'image/jpeg',
-                            'image/jpg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid Image',
-                    ])
                 ],
                 
             ])
             ->add('videoUrls', CollectionType::class, [
                 'entry_type' => VideoType::class,
-                'label' => false,
                 'entry_options' => ['label' => false],
-                'required' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
+                'label'=> false,
                 'prototype' => true,
+                'required' => false,
                 'by_reference' => false
             ])
-            ->add('categories')
+            /*->add('videoUrls', UrlType::class, [
+                "label" => false,              
+                "required" => false,
+                "mapped" => false, 
+                "constraints" => [
+                    new Url([
+                        "protocols" => ["https",],
+                        "message" => "L'URL n'est pas valide.",
+                    ]),
+    
+                ]
+            ])*/
+            
         ;
     }
 
@@ -82,5 +87,6 @@ class TricksType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Tricks::class,
         ]);
+
     }
 }

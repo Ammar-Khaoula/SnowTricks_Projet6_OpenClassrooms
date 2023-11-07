@@ -53,7 +53,7 @@ class ProfileController extends AbstractController
                     // Move the file to the directory where brochures are stored
                     try {
                         $picture->move(
-                            $this->getParameter('images_directory'),
+                            $this->getParameter('avatar_directory'),
                             $newFilename
                         );
                     } catch (FileException $e) {

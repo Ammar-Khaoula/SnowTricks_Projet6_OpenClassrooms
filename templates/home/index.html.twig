@@ -8,16 +8,21 @@
   <h1>SNOWTRICKS</h1>
   <h3>Partagez votre passion du snowboard</h3>
   </nav>
-
   <div class="album py-5 bg-body-tertiary">
     <div class="container-fluid">
       <div class="row">
       {% for trick in tricks %}
-          <div class="card col-6 m-2" style="width: 18rem;">
-            <img src={{asset('assets/images/' ~ trick.image) }} class="card-img-top" alt="figure: {{trick.name}}">
-            <div class="card-body">
-              <a href="trick/{{trick.slug}}"><h5 class="card-title">{{trick.name}}</h5></a>
-            </div>
+          <div class="card m-2" style="width: 16rem;">
+            <img src={{asset('assets/images/imgTricks/' ~ trick.image) }} class="card-img-top" alt="figure: {{trick.name}}">
+            <div class="d-flex">
+              <div class="card-body">
+                <a href="trick/{{trick.slug}}"><h5 class="card-title">{{trick.name}}</h5></a>
+              </div>
+              <div>
+              <a href="{{ path('app_edit_Trick', {id: trick.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a href="{{ path('app_delete_Trick', {id: trick.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+              </div>
+              </div>
           </div>
       {% endfor %}
 </main>
