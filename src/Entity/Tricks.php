@@ -6,10 +6,12 @@ use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TricksRepository;
 use EsperoSoft\DateFormat\DateFormat;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: TricksRepository::class)]
+#[UniqueEntity(fields: ['name'], message: 'Il existe déjà un Tricks avec cette nom')]
 class Tricks
 {
     #[ORM\Id]
@@ -17,7 +19,7 @@ class Tricks
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -43,10 +45,10 @@ class Tricks
 
     private ?string $fromNow = null;
 
-    #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: ImageUrls::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: ImageUrls::class, orphanRemoval: true, cascade:['persist'] )]
     private Collection $imageUrls;
 
-    #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: VideoUrls::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: VideoUrls::class, orphanRemoval: true, cascade:['persist'] )]
     private Collection $videoUrls;
 
 
@@ -221,7 +223,7 @@ class Tricks
     }
 
     /**
-     * @return Collection<int, VideoUrls>
+     * @return Collection|VideoUrls[]>
      */
     public function getVideoUrls(): Collection
     {
@@ -231,7 +233,7 @@ class Tricks
     public function addVideoUrl(VideoUrls $videoUrl): static
     {
         if (!$this->videoUrls->contains($videoUrl)) {
-            $this->videoUrls->add($videoUrl);
+            $this->videoUrls[] = $videoUrl;
             $videoUrl->setTricks($this);
         }
 
@@ -250,8 +252,8 @@ class Tricks
         return $this;
     }
 
-    public function __toString(): string
+ public function __toString(): string
     {
-        return $this->name;
+        return $this->slug;
     }
 }

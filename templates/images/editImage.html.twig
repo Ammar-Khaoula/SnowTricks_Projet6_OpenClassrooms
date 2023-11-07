@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}modifier un image{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+{{form_start(imgform)}}
+   {{ form_row(imgform.name) }}
+    <button type="sumbit" class="btn btn-primary">modifier</button
+
+   {{form_end(imgform)}}
+</div>
+{% endblock %}

@@ -3,12 +3,37 @@
 {% block title %}{{ trick.name }}{% endblock %}
 
 {% block body %}
-    <div class="container singlePage">
+    <div class="container-fluid singlePage">
       <div class="row">
-        <div style="background-image: url({{asset('assets/images/' ~ trick.image) }}); background-size: cover; height: 300px;">
+        <div style="background-image: url({{asset('assets/images/imgTricks/' ~ trick.image) }}); background-repeat: no-repeat;
+          background-size: cover;  background-position: center; height: 75vh; m-4">
           <h1>{{trick.name}}</h1>
         </div>  
-        <div >
+        <div class="imgSinglePage"> 
+          {% for image in trick.imageurls %}
+            <div>   
+              <div>     
+                <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}">              
+              </div>
+              <div class="linkSinglePage">         
+                <a href="/trick/{{trick.slug}}/editImage/{{image.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="/trick/{{trick.slug}}/deletImage/{{image.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          {% endfor %} 
+            {% for video in trick.videourls %}
+              <div>   
+                <div>  
+                {{ embed_video(video.name)|raw }}                  
+                </div>
+                <div class="linkSinglePage">         
+                  <a href="/trick/{{trick.slug}}/editVideo/{{video.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a href="/trick/{{trick.slug}}/deletVideo/{{video.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+        <div>
           <span class="btn btn-info">{{trick.categories}} </span>
           <p class="card-text">{{trick.discription}}</p>
           <span>{{trick.fromNow}}</span>             
@@ -17,18 +42,19 @@
       {% if app.user %}
         <div class="mt-5">
         <h2 class="text-exl mb-8">commentaire(s)</h2>
-      <div>
-        {{form_start(commentForm)}}
-          {{form_row(commentForm.content)}}
-          <button class="btn btn-info"> poster mon commentaire</button>
-        {{form_end(commentForm)}}
-
-      </div>
+        <div>
+          {{form_start(commentForm)}}
+            {{form_row(commentForm.content)}}
+            <button class="btn btn-info"> poster mon commentaire</button>
+          {{form_end(commentForm)}}
+        </div>
+      {% endif %}  
         {% for comment in trick.comments %}
+        <div class="col 10">
           {% include 'comments/index.html.twig' %}
+          <div>
         </div>
         {% endfor %}
-      {% endif %}  
     </div>
     </div>
     </div>

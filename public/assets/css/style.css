@@ -1,85 +1,21 @@
-.bgHeader {
-    background-color: #065D95;
+/*****************Header**************/
+
+.headerSite {
+    background-color: #016AAE;
 }
 
-.login {
-    border: 0px solid black;
-    margin-top: 120px;
-    width: 50%;
-    padding: 15px;
-    margin-bottom: 30px;
-    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
-}
-
-.login h1 {
-    text-align: center;
-    letter-spacing: 3px;
-    color: rgb(248, 161, 95);
-}
-
-.login label {
-    padding: 10px;
-}
-
-.login button {
-    margin: 10px;
-    background: linear-gradient(to right, #9b6d02, #fac273);
-    border: 0px solid black;
-    font-weight: bolder;
-}
-
-.login a {
-    color: rgb(251, 135, 46);
-}
-
-.register {
-    border: 0px solid black;
-    margin-top: 120px;
-    width: 50%;
-    padding: 15px;
-    margin-bottom: 30px;
-    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
-}
-
-.register h1 {
-    text-align: center;
-    letter-spacing: 3px;
-    color: rgb(248, 161, 95);
-}
-
-.register button {
-    margin: 10px;
-    background: linear-gradient(to right, #fac273, #9b6d02);
-    border: 0px solid black;
-    color: white;
-    font-weight: bolder;
-}
-
-.resetPass {
-    border: 0px solid black;
-    margin-top: 120px;
-    width: 50%;
-    padding: 15px;
-    margin-bottom: 30px;
-    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
-}
-
-.resetPass h1 {
-    font-size: 25px;
-    text-align: center;
-    color: rgb(248, 161, 95);
-}
-
-.resetPass button {
-    margin: 10px;
-    background: linear-gradient(to right, #fac273, #9b6d02);
-    border: 0px solid black;
-    color: white;
-    font-weight: bolder;
+.headerSite img {
+    width: 50px;
+    height: 40px;
 }
 
 
-/*homePage*/
+/**************homePage**************/
+
+.homePage {
+    position: relative;
+    bottom: 30px;
+}
 
 .homePageNav {
     background-image: url(../images/img.jpg);
@@ -87,10 +23,9 @@
     background-size: cover;
     height: 100vh;
     background-attachment: fixed;
-    position: relative;
-    bottom: 40px;
-    padding-top: 20%;
+    padding-top: 10%;
     padding-left: 30px;
+    background-position: center;
 }
 
 .homePageNav h1 {
@@ -102,8 +37,47 @@
     color: #c8e6f8;
 }
 
+.homePage img {
+    width: 100%;
+    height: 180px;
+}
 
-/*Home: singlePage*/
+.homePage a h5 {
+    text-transform: capitalize;
+}
+
+.homePage a i {
+    padding-top: 15px;
+    margin: 7px;
+}
+
+
+/*************Home: singlePage**********/
+
+.singlePage h1 {
+    color: #016AAE;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 50px;
+    padding-top: 15%;
+}
+
+.imgSinglePage {
+    display: flex;
+    margin: 10px;
+}
+
+.imgSinglePage img {
+    width: 150px;
+    height: 130px;
+    padding: 7px;
+}
+
+.linkSinglePage {
+    border: 1px solid black;
+    width: 70px;
+    padding-left: 5px;
+}
 
 .commentsTrick {
     display: flex;
@@ -125,7 +99,6 @@
 }
 
 .comment h5 {
-    color: #065D95;
     text-transform: capitalize;
     margin-right: 20px;
 }
@@ -139,7 +112,7 @@
 }
 
 
-/*profilUser*/
+/****************profilUser***************/
 
 .profilUsers {
     padding: 15px;
@@ -180,6 +153,88 @@
     margin: auto 40px;
     padding: 5px;
     background: linear-gradient(to right, #fac273, #9b6d02);
+    color: white;
+    font-weight: bolder;
+}
+
+
+/******************registration*****************/
+
+.register {
+    border: 0px solid black;
+    margin-top: 120px;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
+}
+
+.register h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    color: rgb(248, 161, 95);
+}
+
+.register button {
+    margin: 10px;
+    background: linear-gradient(to right, #fac273, #9b6d02);
+    border: 0px solid black;
+    color: white;
+    font-weight: bolder;
+}
+
+
+/****************login******************/
+
+.login {
+    border: 0px solid black;
+    margin-top: 120px;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
+}
+
+.login h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    color: rgb(248, 161, 95);
+}
+
+.login label {
+    padding: 10px;
+}
+
+.login button {
+    margin: 10px;
+    background: linear-gradient(to right, #9b6d02, #fac273);
+    border: 0px solid black;
+    font-weight: bolder;
+}
+
+.login a {
+    color: rgb(251, 135, 46);
+}
+
+.resetPass {
+    border: 0px solid black;
+    margin-top: 120px;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 1px 2px 4px 1px rgb(129, 129, 129);
+}
+
+.resetPass h1 {
+    font-size: 25px;
+    text-align: center;
+    color: rgb(248, 161, 95);
+}
+
+.resetPass button {
+    margin: 10px;
+    background: linear-gradient(to right, #fac273, #9b6d02);
+    border: 0px solid black;
     color: white;
     font-weight: bolder;
 }

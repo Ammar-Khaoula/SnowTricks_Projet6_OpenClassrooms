@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un video{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+{{ form_start(trickform) }}
+    {{ form_row(trickform.name) }}
+    <button class="sumbit">Modifer</button>
+    {{ form_end(trickform) }}
+</div>
+{% endblock %}
