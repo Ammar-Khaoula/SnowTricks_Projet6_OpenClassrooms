@@ -2,22 +2,33 @@
 
 namespace App\Controller;
 
+use App\Entity\Tricks;
 use App\Entity\Comments;
 use App\Form\CommentType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\Pagination;
+use App\Repository\TricksRepository;
+use App\Repository\CommentsRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommentsController extends AbstractController
 {
-    #[Route('/comments', name: 'app_comments')]
-    public function index(): Response
+   /**
+     * Paginated : Display paginated comments
+     */
+    #[Route('/trick/{slug}/comments/page/{page}', name: 'comments_paginated')]
+    public function paginated(int $page = 1)
     {
-        $comment  = new Comments;
-        $commetForm = $this->createForm(CommentType::class, $comment);
+        
+        
 
-        return $this->render('comments/index.html.twig', [
-            'commetForm' => $commetForm->createView()
+        return $this->render('comment/index.html.twig', [
+            
+           
         ]);
     }
+
 }

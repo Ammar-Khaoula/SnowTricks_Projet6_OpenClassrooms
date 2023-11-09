@@ -223,7 +223,7 @@ class Tricks
     }
 
     /**
-     * @return Collection|VideoUrls[]>
+     * @return Collection<int, VideoUrls>
      */
     public function getVideoUrls(): Collection
     {
@@ -233,7 +233,7 @@ class Tricks
     public function addVideoUrl(VideoUrls $videoUrl): static
     {
         if (!$this->videoUrls->contains($videoUrl)) {
-            $this->videoUrls[] = $videoUrl;
+            $this->videoUrls->add($videoUrl);
             $videoUrl->setTricks($this);
         }
 

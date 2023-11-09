@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Tricks;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Tricks>
@@ -20,29 +21,31 @@ class TricksRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Tricks::class);
     }
+    public function findTricksPaginated(int $page, int $limit = 3):array
+    {
+        $limit = abs($limit);
+        $result = [];
+        $query = $this->getEntityManager()->createQueryBuilder()
+                ->select('t')
+                ->from('APP\Entity\Tricks', 't')
+                ->orderBy('t.createdAt' , 'DESC')
+                ->setMaxResults($limit)
+                ->setFirstResult(($page * $limit) - $limit);
 
-//    /**
-//     * @return Tricks[] Returns an array of Tricks objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
 
-//    public function findOneBySomeField($value): ?Tricks
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        //dd($data);
+        if(empty($data)){
+            return $result;
+        }
+        $pages = ceil($paginator->count() / $limit);
+
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+        
+        return $result;
+    }
 }

@@ -11,19 +11,26 @@
   <div class="album py-5 bg-body-tertiary">
     <div class="container-fluid">
       <div class="row">
-      {% for trick in tricks %}
+      {% for trick in tricks.data %}
           <div class="card m-2" style="width: 16rem;">
             <img src={{asset('assets/images/imgTricks/' ~ trick.image) }} class="card-img-top" alt="figure: {{trick.name}}">
             <div class="d-flex">
               <div class="card-body">
                 <a href="trick/{{trick.slug}}"><h5 class="card-title">{{trick.name}}</h5></a>
               </div>
-              <div>
-              <a href="{{ path('app_edit_Trick', {id: trick.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-              <a href="{{ path('app_delete_Trick', {id: trick.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-              </div>
+              {% if app.user %}
+                <div>
+                  <a href="{{ path('app_edit_Trick', {id: trick.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a href="{{ path('app_delete_Trick', {id: trick.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </div>
+              {% endif %}
               </div>
           </div>
       {% endfor %}
+      {% set path = 'app_home' %}
+        {% set pages = tricks.pages %}
+        {% set currentPage = tricks.page %}
+        {% include "header/_paginationHome.html.twig" %} 
 </main>
+
 {% endblock %}
