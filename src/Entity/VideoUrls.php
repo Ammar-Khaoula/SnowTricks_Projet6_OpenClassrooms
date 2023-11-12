@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\VideoUrlsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VideoUrlsRepository::class)]
 class VideoUrls
@@ -14,6 +15,7 @@ class VideoUrls
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'videoUrls')]

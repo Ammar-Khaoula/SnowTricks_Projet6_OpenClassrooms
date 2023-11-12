@@ -3,16 +3,18 @@
 {% block title %}Figures{% endblock %}
 
 {% block body %}
-<div class="container my-3">
+<div class="container my-3 bbb">
     <h1>Ajouter un trick</h1>
         {{form_start(trickform)}}
+        {{ form_widget(trickform._token)}}
+        {{ form_errors(trickform)}}
             <div class="col-10 m-2">
                 <div class="d-flex p-2">
                     <div class="col-5">{{form_row(trickform.name)}}</div>
                     <div class="col-3">{{form_row(trickform.categories)}}</div>
                 </div>
                 <div>
-                    {{form_row(trickform.image)}}
+                    {{form_row(trickform.pictureTrick)}}
                 </div>
                 <div>
                     {{form_row(trickform.discription)}}
@@ -20,27 +22,21 @@
                 <div>
                     {{form_row(trickform.imageUrls)}}
                 </div>
-                <div class="col-6 videos-container">
-                        <div id="videos" class="videos" data-prototype="{{ form_row(trickform.videoUrls.vars.prototype)|e('html_attr') }}">
-                            {{ form_row(trickform.videoUrls) }}
-                        </div>
-                    <input id="video-counter" type="text" value="0">
-                    <button id="add-video" type="button">Ajouter une vidéo</button>
+                <button type="button" class="btn btn-primary btn-new" data-collection="#videos">nouveau video</button>
+                <div class"row" id="videos" 
+                data-prototype="{{ include("video/index.html.twig", {trickform: trickform.videoUrls.vars.prototype})|e("html_attr") }}" 
+                data-index="{{ trickform.videoUrls|length > 0 ? trickform.videoUrls|last.vars.name + 1 : 0}}">
+                    {% for videos in trickform.videoUrls %}
+                        {{ include("video/index.html.twig", {trickform: videos}) }}
+                    {% endfor %}
                 </div>
-            
                 <button type="sumbit" class="btn btn-primary">ajouter</button> 
             </div>
-        {{form_end(trickform)}}
+        {{ form_end(trickform, {render_rest: false }) }}
 </div>
-{% endblock %}
+
 {% block script %}
-	<script>
-        $('#add-video').on('click', function (e) {
-            const index = +$('#video-counter').val();
-            const tmpl = $('.videos').data('prototype').replace(/__name__/g, index);
-            console.log(tmpl);
-            $('#video-counter').val(index + 1);
-            $('#videos').append(tmpl);
-        });
-    </script>
+	<script src="{{asset('assets/js/videos-collection.js')}}"></script>
+{% endblock %}
+
 {% endblock %}

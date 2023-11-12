@@ -3,6 +3,9 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
+    <div>
+        {% include("emails/_activeCompte.html.twig") %}
+    </div>
     <div class="container profilUsers">
     <div class="profilUser">
         {% if  app.user.avatar is empty %}

@@ -12,11 +12,6 @@
 
 /**************homePage**************/
 
-.homePage {
-    position: relative;
-    bottom: 20px;
-}
-
 .homePageNav {
     background-image: url(../images/img.jpg);
     background-repeat: no-repeat;
@@ -34,7 +29,7 @@
 }
 
 .homePageNav h3 {
-    color: #c8e6f8;
+    color: #0b0b0b;
 }
 
 .homePage img {
@@ -51,15 +46,34 @@
     margin: 7px;
 }
 
+.trickHome {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.trickPage {
+    width: 30%;
+}
+
 
 /*************Home: singlePage**********/
+
+.singlePage {
+    position: relative;
+    top: 40px;
+}
 
 .singlePage h1 {
     color: #016AAE;
     text-transform: capitalize;
     text-align: center;
-    font-size: 50px;
-    padding-top: 15%;
+    border: 0px solid black;
+    box-shadow: 1px 1px 1px 1px black;
+    width: 30%;
+    margin: auto;
+    background-color: #c1e2f6;
+    margin-top: 10%;
 }
 
 .singlePage span {
@@ -70,15 +84,23 @@
     box-shadow: 2px 4px 4px 2px rgb(40, 40, 40);
 }
 
-.imgSinglePage {
-    display: flex;
-    margin: 10px;
+.media {
+    display: none;
 }
 
-.imgSinglePage img {
-    width: 150px;
-    height: 130px;
-    padding: 7px;
+.imgSinglePage {
+    margin: 10px;
+    padding: 10px;
+}
+
+.mediaTricks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.mediaTrick {
+    width: 30%;
 }
 
 .linkSinglePage {
@@ -105,7 +127,7 @@
 
 .commentsTrick {
     display: flex;
-    padding: 4px;
+    padding: 7px;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
@@ -230,11 +252,12 @@
     padding: 10px;
 }
 
-.login button {
+.btnLogin {
     margin: 10px;
     background: linear-gradient(to right, #9b6d02, #fac273);
     border: 0px solid black;
     font-weight: bolder;
+    color: white;
 }
 
 .login a {
@@ -267,17 +290,23 @@
 
 /*************edit Trick**********/
 
+.editTrick {
+    position: relative;
+    top: 40px;
+}
+
 .editTrick h1 {
     color: #016AAE;
     text-transform: capitalize;
     text-align: center;
     font-size: 50px;
-    padding-top: 15%;
+    padding-top: 25%;
 }
 
 .linkEditTricks {
     display: flex;
     justify-content: end;
+    margin-top: 30px;
 }
 
 .linkEditTricks button {
@@ -285,8 +314,11 @@
 }
 
 .linkEditTrick {
-    border: 1px solid black;
-    width: 100px;
+    border: 0px solid black;
+    box-shadow: 0px 1px 0px 1px black;
+    width: 80px;
+    background-color: #f6f8fa;
+    padding: 5px;
 }
 
 .linkEditTrick a {

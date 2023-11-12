@@ -48,7 +48,6 @@ class HomeController extends AbstractController
         }
         $page = $request->query->getInt('page', 1);
         $paginatedComment = $commentRepo->findCommentPaginated($page, $trick->getSlug(), 10);
-        //dd($paginatedComment);
 
         return $this->render('home/single.html.twig', [
             'commentForm' => $commentForm->createView(),

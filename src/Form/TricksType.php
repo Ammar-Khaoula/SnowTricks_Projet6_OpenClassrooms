@@ -22,7 +22,7 @@ class TricksType extends AbstractType
     {
         $builder
             ->add('name', options:[
-                'label' => 'Nom'
+                'label' => false
             ])
             ->add('discription', TextareaType::class, [
                 'label' => false,
@@ -30,7 +30,7 @@ class TricksType extends AbstractType
                     'rows' => 10
                 ],
             ])
-            ->add('image', FileType::class,[
+            ->add('pictureTrick', FileType::class,[
                 'label' => 'image principale',
                 'required' => false,
                 'mapped' => false,
@@ -62,7 +62,7 @@ class TricksType extends AbstractType
             ])
             ->add('videoUrls', CollectionType::class, [
                 'entry_type' => VideoType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => ['label' =>false],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'label'=> false,
