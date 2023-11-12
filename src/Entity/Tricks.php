@@ -9,6 +9,7 @@ use EsperoSoft\DateFormat\DateFormat;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TricksRepository::class)]
 #[UniqueEntity(fields: ['name'], message: 'Il existe déjà un Tricks avec cette nom')]
@@ -28,8 +29,6 @@ class Tricks
     #[ORM\Column(length: 255)]
     private ?string $discription = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'tricks')]
     private ?Category $categories = null;
@@ -49,7 +48,11 @@ class Tricks
     private Collection $imageUrls;
 
     #[ORM\OneToMany(mappedBy: 'tricks', targetEntity: VideoUrls::class, orphanRemoval: true, cascade:['persist'] )]
+    #[Assert\Count(min:1)]
     private Collection $videoUrls;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?PictureTrick $pictureTrick = null;
 
 
 
@@ -103,19 +106,6 @@ class Tricks
 
         return $this;
     }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
 
     public function getCategories(): ?Category
     {
@@ -253,7 +243,19 @@ class Tricks
     }
 
  public function __toString(): string
+             {
+                 return $this->slug;
+             }
+
+    public function getPictureTrick(): ?PictureTrick
     {
-        return $this->slug;
+        return $this->pictureTrick;
+    }
+
+    public function setPictureTrick(?PictureTrick $pictureTrick): static
+    {
+        $this->pictureTrick = $pictureTrick;
+
+        return $this;
     }
 }

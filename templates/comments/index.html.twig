@@ -5,7 +5,7 @@
 {% block body %} 
 
 {% for paginatedComments in paginatedComment.data %}  
-  <div class="commentsTrick ">
+  <div class="commentsTrick">
     <div>
         {% if paginatedComments.author.avatar %}
           <img src="{{asset('assets/images/' ~ paginatedComments.author.avatar) }}" alt="{{paginatedComments.author}}">
@@ -13,7 +13,7 @@
           <img src="{{asset('assets/images/avatar.png') }}" alt="{{paginatedComments.author}}" >
         {% endif %}
     </div>
-    <div class="comment col-md-8">
+    <div class="comment col-md-10">
       <div class="d-flex">
         <h5>
             {{paginatedComments.author}}

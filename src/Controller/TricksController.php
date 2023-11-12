@@ -7,6 +7,7 @@ use App\Form\TricksType;
 use App\Entity\ImageUrls;
 use App\Entity\VideoUrls;
 use App\Form\PictureType;
+use App\Entity\PictureTrick;
 use App\Repository\TricksRepository;
 use App\Repository\ImageUrlsRepository;
 use App\Repository\VideoUrlsRepository;
@@ -45,31 +46,8 @@ class TricksController extends AbstractController
                 $img->setName($fichier);
                 $trick->addImageUrl($img);
             }
-            //add video  
-            $videos = $trickform->get('videoUrls')->getData();
-            if($videos){
-                foreach($videos as $video){
-                    if ($video->getName() !== null){
-                        $trickVideo = new VideoUrls();
-                        $trickVideo->setName($video->getName());
-                        $trickVideo->setTricks($trick);
-
-                        $em->persist($trickVideo);
-                    }
-                }
-            }
-                /*$videos = [$trickform->get('videoUrls')->getData()]; 
-                dump($videos);
-                foreach($videos as $vedio){
-                    $videoUrl = new VideoUrls($vedio);                   
-                    $trick->addVideoUrl($videoUrl);
-                    $videoUrl->setName($vedio);
-                    dump($videoUrl);
-                }*/
-                //dd($trick);
-
              //add piture
-            $picture = $trickform->get('image')->getData();
+            $picture = $trickform->get('pictureTrick')->getData();
             if ($picture) {
                 $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
@@ -81,14 +59,15 @@ class TricksController extends AbstractController
                     );
                 } catch (FileException $e) {
                 }
-                $trick->setImage($newFilename);
+                $image = new PictureTrick();
+                $image->setName($newFilename);
+                $trick->setPictureTrick($image);
             }
             //add slug
             $slug = $slugger->slug($trick->getName());
             $trick->setSlug($slug);
 
             $em->persist($trick);
-            //dd($trick); 
             $em->flush();
 
             $this->addFlash('success', 'figure ajouté avec succés');
@@ -130,7 +109,7 @@ class TricksController extends AbstractController
                 }
         
              //add image
-            $picture = $trickform->get('image')->getData();
+            $picture = $trickform->get('pictureTrick')->getData();
             if ($picture) {
                 $originalFilename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
@@ -144,7 +123,9 @@ class TricksController extends AbstractController
                     );
                 } catch (FileException $e) {
                 }
-                $trick->setImage($newFilename);
+                $image = new PictureTrick();
+                $image->setName($newFilename);
+                $trick->setPictureTrick($image);
             }
 
             $em->persist($trick);

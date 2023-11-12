@@ -20,11 +20,8 @@ class CommentsController extends AbstractController
      * Paginated : Display paginated comments
      */
     #[Route('/trick/{slug}/comments/page/{page}', name: 'comments_paginated')]
-    public function paginated(int $page = 1)
+    public function paginated(int $page = 1): Response
     {
-        
-        
-
         return $this->render('comment/index.html.twig', [
             
            

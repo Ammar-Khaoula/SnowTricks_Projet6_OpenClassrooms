@@ -1,10 +1,67 @@
 /*****************Header**************/
 
-.headerSite {
-    background-color: #ae4f01;
-}
-
 .headerSite img {
     width: 50px;
     height: 40px;
+}
+
+
+/****************login******************/
+
+.login {
+    width: 70%;
+}
+
+.resetPass {
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+.resetPass h1 {
+    font-size: 22px;
+}
+
+
+/**************homePage**************/
+
+.homePage {
+    position: relative;
+    bottom: 25px;
+}
+
+.trickPage {
+    width: 40%;
+}
+
+
+/****************profilUser***************/
+
+.profilUsers {
+    width: 80%;
+}
+
+.profilUser img {
+    width: 130px;
+    height: 130px;
+}
+
+
+/*************Home: singlePage**********/
+
+.singlePage {
+    position: relative;
+    top: 50px;
+}
+
+.singlePage h1 {
+    width: 40%;
+    margin-top: 25%;
+}
+
+.mediaTrick {
+    width: 40%;
+}
+
+.comment p {
+    font-size: 16px;
 }

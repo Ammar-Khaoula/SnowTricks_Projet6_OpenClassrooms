@@ -5,8 +5,12 @@
 {% block body %}
     <div class="container-fluid singlePage">
       <div class="row">
-        <div style="background-image: url({{asset('assets/images/imgTricks/' ~ trick.image) }}); background-repeat: no-repeat;
-          background-size: cover;  background-position: center; height: 75vh; m-4">
+          {% if trick.pictureTrick is empty %}
+            <div style="background-color: #c0e2f8; height: 75vh; ">
+          {% else %}
+            <div style="background-image: url({{asset('assets/images/imgTricks/' ~ trick.pictureTrick) }}); background-repeat: no-repeat;
+            background-size: cover;  background-position: center; height: 75vh;">
+          {% endif %}
           <div class="linkEditTricks">
             <div class="linkEditTrick">
                 <a href="{{ path('app_edit_Trick', {id: trick.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -15,24 +19,32 @@
           </div>
           <h1>{{trick.name}}</h1>
         </div>  
-        <div class="imgSinglePage"> 
+      <div> 
+      {% include("header/__flash.html.twig") %}
+    </div>
+    <div class="container imgSinglePage"> 
+      <div class="mediaTricks"> 
           {% for image in trick.imageurls %}   
-              <div>     
-                <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}" style="width: 160px; height: 160px;">              
+              <div class="card mediaTrick">     
+                <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}" class="card-img-top"  height="160px">              
               </div>
           {% endfor %} 
             {% for video in trick.videourls %}   
-              <div>  
-                {{ embed_video(video.name)|raw }}                  
+              <div class="card mediaTrick">  
+                {{ embed_video(video.name)|raw }}              
               </div>
             {% endfor %}
+      </div>
+        <div class="media">
+        <button type="button">voir les médias</button>
         </div>
+    </div>
         <div>
           <p class="card-text">{{trick.discription}}</p>
         </div>
-        <div class="col-8 d-flex flex-row justify-content-center">
-          <span class="col-3">{{trick.categories}} </span>         
-          <span class="col-3">{{trick.fromNow}}</span>             
+        <div class="col-10 d-flex flex-row justify-content-center">
+          <span class="col-4 col-md-5">{{trick.categories}} </span>         
+          <span class="col-4 col-md-5">{{trick.fromNow}}</span>             
         </div>
       </div>
   <div class="mt-5">
@@ -48,7 +60,7 @@
       {% endif %}  
 
       
-        <div class="col 10">
+        <div class="col 12">
           {% include 'comments/index.html.twig' %}
         <div>
   </div>
@@ -61,4 +73,7 @@
     </div>
     </div>
     </div>
+    {% block script %}
+	    <script src="{{asset('assets/js/seeMedia.js')}}"></script>
+    {% endblock %}
 {% endblock %}
