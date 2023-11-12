@@ -82,8 +82,9 @@ use DateTimeImmutable;
 
             return $payload['exp'] < $now->getTimestamp();
         }
+        
         // verified signatur of token
-        public function check(string $token, string $secret)
+        public function check(string $token, string $secret): string
         {
             $header = $this->getHeader($token);
             $payload = $this->getPayload($token);
