@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Tricks;
 use App\Form\VideoType;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Url;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -23,7 +25,7 @@ class TricksType extends AbstractType
                 'label' => 'Nom'
             ])
             ->add('discription', TextareaType::class, [
-                'label' => 'description',
+                'label' => false,
                 'attr' => [
                     'rows' => 10
                 ],
@@ -46,7 +48,9 @@ class TricksType extends AbstractType
                 ],
                 
             ])
-            ->add('categories')
+            ->add('categories',options:[
+                'label' => false, 
+            ])
             ->add('imageUrls', FileType::class,[
                 'label' => 'illustrations',
                 'required' => false,

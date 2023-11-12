@@ -19,6 +19,7 @@ class CategoryFixtures extends Fixture
         $this->createCategory('Grabs', $manager);
         $this->createCategory('Flips',  $manager);
         $this->createCategory('Slides',  $manager);
+        $this->createCategory('Rotations',  $manager);
         
         $manager->flush();
     }

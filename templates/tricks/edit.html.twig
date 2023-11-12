@@ -1,26 +1,59 @@
-{{form_start(trickform)}}
-    <div class="col-10 m-2">
-        <div class="d-flex p-2">
-            <div class="col-5">{{form_row(trickform.name)}}</div>
-            <div class="col-3">{{form_row(trickform.categories)}}</div>
-        </div>
-        {{form_row(trickform.image)}}
-        {{form_row(trickform.discription)}}
-            <div class="imgSinglePage"> 
-          {% for image in trick.imageurls %}
-            <div>   
-              <div>     
-                <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}">              
-              </div>
-              <div class="linkSinglePage">         
-                <a href="/trick/{{trick.slug}}/editImage/{{image.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a href="/trick/{{trick.slug}}/deletImage/{{image.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-              </div>
+{% extends 'base.html.twig' %}
+
+{% block title %}modifier un trick{% endblock %}
+
+{% block body %}
+  {{form_start(trickform)}}
+      <div class=" container my-3 col-10 editTrick">
+          <div class="row">
+            <div style="background-image: url({{asset('assets/images/imgTricks/' ~ trick.image) }}); background-repeat: no-repeat;
+              background-size: cover;  background-position: center; height: 75vh; m-4">
+                <div class="linkEditTricks">
+                  <div class="linkEditTrick">
+                      <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                      <a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              <h1>{{trick.name}}</h1>
             </div>
-          {% endfor %} 
-        </div>
-        {#form_row(trickform.imageUrls)#}
-    
-        <button type="sumbit" class="btn btn-primary">save</button> 
-    </div>
-{{form_end(trickform)}}
+            <div class="imgSinglePage my-3"> 
+              {% for image in trick.imageurls %}
+                <div>   
+                  <div>     
+                    <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}" style="width: 160px; height: 160px;">              
+                  </div>
+                  <div class="linkSinglePage">         
+                    <a href="/trick/{{trick.slug}}/editImage/{{image.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="/trick/{{trick.slug}}/deletImage/{{image.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              {% endfor %} 
+              {% for video in trick.videourls %}
+                <div>                     
+                  <div> {{ embed_video(video.name)|raw }} </div>                                   
+                  <div class="linkSinglePage">         
+                    <a href="/trick/{{trick.slug}}/editVideo/{{video.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="/trick/{{trick.slug}}/deletVideo/{{video.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="col-10">
+              {{form_row(trickform.discription)}}
+            </div>
+            <div class="col-3">
+              {{form_row(trickform.categories)}}
+            </div>
+          <div class="col-10 linkEditTricks">
+            <a href="{{ path('app_delete_Trick', {id: trick.id}) }}" class="btn btn-danger">Delete</a> 
+            <button type="sumbit" class="btn btn-primary">Save</button> 
+          </div>
+      </div>
+      <div  style="display: none;">
+      {{form_row(trickform.name)}}
+      {{form_row(trickform.image)}}
+      {{form_row(trickform.imageUrls)}}
+      {{form_row(trickform.videoUrls)}}
+      </div>
+  {{form_end(trickform)}}
+{% endblock %}

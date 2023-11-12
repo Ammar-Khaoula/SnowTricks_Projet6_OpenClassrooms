@@ -2,31 +2,31 @@
 
 {% block title %}commentaire{% endblock %}
 
-{% block body %}  
+{% block body %} 
+
+{% for paginatedComments in paginatedComment.data %}  
   <div class="commentsTrick ">
-        <div>
-            {% if comment.author.avatar %}
-              <img src="{{asset('assets/images/' ~ comment.author.avatar) }}" alt="{{comment.author}}">
-            {% else %}
-              <img src="{{asset('assets/images/avatar.png') }}" alt="{{comment.author}}" >
-            {% endif %}
-        </div>
-      <div class="comment col-md-8">
-          <div class="d-flex">
-            <h5>
-                {{comment.author}}
-            </h5>
-              <h6>{{comment.createdAt| date("d/m/y") }}</h6>
-          </div>
-          <div>
-            <p >
-                {{comment.content}}
-            </p>
-        </div>
-      </div>  
+    <div>
+        {% if paginatedComments.author.avatar %}
+          <img src="{{asset('assets/images/' ~ paginatedComments.author.avatar) }}" alt="{{paginatedComments.author}}">
+        {% else %}
+          <img src="{{asset('assets/images/avatar.png') }}" alt="{{paginatedComments.author}}" >
+        {% endif %}
+    </div>
+    <div class="comment col-md-8">
+      <div class="d-flex">
+        <h5>
+            {{paginatedComments.author}}
+        </h5>
+          <h6>{{paginatedComments.createdAt| date("d/m/y") }}</h6>
+      </div>
+      <div>
+          <p>
+            {{paginatedComments.content}}
+          </p>
+      </div>
+    </div>  
   </div>  
+{% endfor %}
 
- 
-
-        
 {% endblock %}

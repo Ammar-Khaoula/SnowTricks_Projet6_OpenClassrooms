@@ -5,9 +5,11 @@
         <title>{% block title %}SnowTricks{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <!-- style sheets -->
-        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+                <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/mobile.css') }}" media="all and (max-width:768px)">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/tablette.css') }}" media="all and (min-width:769px) and (max-width:991px)">
                 <!--Google FontAwesome-->
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Comfortaa&family=Imperial+Script&family=Roboto:ital,wght@0,300;0,400;0,700;1,900&family=Work+Sans:ital,wght@0,100;0,200;0,600;0,800;1,300;1,400;1,800;1,900&display=swap" rel="stylesheet">
 

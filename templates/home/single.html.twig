@@ -7,54 +7,57 @@
       <div class="row">
         <div style="background-image: url({{asset('assets/images/imgTricks/' ~ trick.image) }}); background-repeat: no-repeat;
           background-size: cover;  background-position: center; height: 75vh; m-4">
+          <div class="linkEditTricks">
+            <div class="linkEditTrick">
+                <a href="{{ path('app_edit_Trick', {id: trick.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="{{ path('app_delete_Trick', {id: trick.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </div>
+          </div>
           <h1>{{trick.name}}</h1>
         </div>  
         <div class="imgSinglePage"> 
-          {% for image in trick.imageurls %}
-            <div>   
+          {% for image in trick.imageurls %}   
               <div>     
-                <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}">              
+                <img src="{{asset('assets/images/imgTricks/' ~ image.name) }}" style="width: 160px; height: 160px;">              
               </div>
-              <div class="linkSinglePage">         
-                <a href="/trick/{{trick.slug}}/editImage/{{image.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a href="/trick/{{trick.slug}}/deletImage/{{image.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-              </div>
-            </div>
           {% endfor %} 
-            {% for video in trick.videourls %}
-              <div>   
-                <div>  
+            {% for video in trick.videourls %}   
+              <div>  
                 {{ embed_video(video.name)|raw }}                  
-                </div>
-                <div class="linkSinglePage">         
-                  <a href="/trick/{{trick.slug}}/editVideo/{{video.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                  <a href="/trick/{{trick.slug}}/deletVideo/{{video.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </div>
               </div>
             {% endfor %}
         </div>
         <div>
-          <span class="btn btn-info">{{trick.categories}} </span>
           <p class="card-text">{{trick.discription}}</p>
-          <span>{{trick.fromNow}}</span>             
+        </div>
+        <div class="col-8 d-flex flex-row justify-content-center">
+          <span class="col-3">{{trick.categories}} </span>         
+          <span class="col-3">{{trick.fromNow}}</span>             
         </div>
       </div>
+  <div class="mt-5">
       {% if app.user %}
-        <div class="mt-5">
-        <h2 class="text-exl mb-8">commentaire(s)</h2>
         <div>
           {{form_start(commentForm)}}
-            {{form_row(commentForm.content)}}
-            <button class="btn btn-info"> poster mon commentaire</button>
+            <div class="col-11 d-flex flex-row justify-content-center addComment">
+              <div class="col-8">{{form_row(commentForm.content)}}</div>
+              <div class="col-3"><button type="submit">commenter</button></div>
+            </div>
           {{form_end(commentForm)}}
         </div>
       {% endif %}  
-        {% for comment in trick.comments %}
+
+      
         <div class="col 10">
           {% include 'comments/index.html.twig' %}
-          <div>
-        </div>
-        {% endfor %}
+        <div>
+  </div>
+        {% set path = 'app_single_trick' %}
+        {% set slug = trick.slug %}
+        {% set pages = paginatedComment.pages %}
+        {% set currentPage = paginatedComment.page %}
+        {% include "header/_pagination.html.twig" %}    
+
     </div>
     </div>
     </div>
