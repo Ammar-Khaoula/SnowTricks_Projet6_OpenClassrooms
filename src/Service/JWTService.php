@@ -84,7 +84,7 @@ use DateTimeImmutable;
         }
         
         // verified signatur of token
-        public function check(string $token, string $secret): string
+        public function check(string $token, string $secret):string
         {
             $header = $this->getHeader($token);
             $payload = $this->getPayload($token);

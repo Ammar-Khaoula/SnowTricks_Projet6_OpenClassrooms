@@ -16,7 +16,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VideoController extends AbstractController
 {
-    #[Route('/trick/{slug}/addVideo', name: 'app_video')]
+    /**
+         * add videos
+         *
+         * @param string $slug
+         * @param Request $request
+         * @param EntityManagerInterface $em
+         * @param TricksRepository $repoTrick
+         * 
+         * @return Response
+         *
+    */
+    #[Route('/trick/{slug}/addVideo', name: 'app_video', methods: ['GET','POST'])]
     public function index(Request $request, EntityManagerInterface $em, TricksRepository $repoTrick, $slug): Response
     {
         $trick = $repoTrick->findOneBySlug($slug);
@@ -42,7 +53,20 @@ class VideoController extends AbstractController
             'trickform' => $trickform->createView(),
         ]);
     }
-    #[Route('/trick/{slug}/editVideo/{id}', name: 'app_editVideo')]
+    /**
+         * modifier videos
+         *
+         * @param integer $id
+         * * @param string $slug
+         * @param Request $request
+         * @param EntityManagerInterface $em
+         * @param TricksRepository $repoTrick
+         * @param VideoUrlsRepository $videoRepo
+         * 
+         * @return Response
+         *
+    */
+    #[Route('/trick/{slug}/editVideo/{id}', name: 'app_editVideo', methods: ['GET','POST'])]
     public function edit(Request $request, EntityManagerInterface $em, TricksRepository $repoTrick, VideoUrlsRepository $videoRepo, $slug, $id): Response
     {
         $trick = $repoTrick->findOneBySlug($slug);
@@ -69,8 +93,17 @@ class VideoController extends AbstractController
             'video' => $video
         ]);
     }
-
-    #[Route('/trick/{slug}/deletVideo/{id}', name: 'app_delete_video')]
+/**
+         * delete videos
+         *
+         * @param integer $id
+         * @param string $slug
+         * @param EntityManagerInterface $em
+         * @param VideoUrlsRepository $videoRepo
+         *
+         * @return Response
+    */
+    #[Route('/trick/{slug}/deletVideo/{id}', name: 'app_delete_video', methods: ['GET'])]
     public function delete(EntityManagerInterface $em, VideoUrlsRepository $videoRepo, Request $request, $id, $slug): Response
     {
         $video = $videoRepo->findOneBy(["id" => $id]);

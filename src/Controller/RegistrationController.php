@@ -19,6 +19,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
+    /**
+     * register
+     * 
+     * @return Response
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, 
     EntityManagerInterface $entityManager, SendMailService $mail, JWTService $jwt): Response
@@ -72,8 +77,12 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-
-    #[Route('/verif/{token}', name: 'verify_user')]
+/**
+     * mail verified
+     * 
+     * @return Response
+     */
+    #[Route('/verif/{token}', name: 'verify_user', methods: ['GET','POST'])]
     public function verifyUser($token, JWTService $jwt, 
     UsersRepository $usersRepository, EntityManagerInterface $entityManager): Response
     {
@@ -95,7 +104,11 @@ class RegistrationController extends AbstractController
         $this->addFlash('danger', 'le token est invalide ou a expiré');
             return $this->redirectToRoute('app_login');
     }
-
+/**
+     * mail verified
+     * 
+     * @return Response
+     */
     #[Route('/renoiverif', name: 'resend_verif')]
     public function resendVerif(JWTService $jwt, SendMailService $mail,
     UsersRepository $usersRepository): Response

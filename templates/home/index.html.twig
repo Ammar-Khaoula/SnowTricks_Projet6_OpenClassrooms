@@ -4,10 +4,13 @@
 
 {% block body %}
 <main class="homePage">
-    <nav class="homePageNav">
+    <nav class="homePageNav" id="index">
       <h1>SNOWTRICKS</h1>
       <h3>Partagez votre passion du snowboard</h3>
     </nav>
+    <div class="arrow" id="down">
+      <a href="#footer"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+    </div>
     <div> 
       {% include("header/__flash.html.twig") %}
     </div>
@@ -38,6 +41,10 @@
         {% set pages = tricks.pages %}
         {% set currentPage = tricks.page %}
         {% include "header/_paginationHome.html.twig" %} 
+        <div class="arrow">
+            <a href="#index"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+        </div>
 </main>
+  {% include("footer/index.html.twig") %}
 
 {% endblock %}
