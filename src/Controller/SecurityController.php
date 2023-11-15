@@ -18,6 +18,11 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    /**
+     * login
+     * 
+     * @return Response
+     */
     #[Route(path: '/connexion', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -31,13 +36,21 @@ class SecurityController extends AbstractController
             'last_username' => $lastUsername, 
             'error' => $error]);
     }
-
+/**
+     * logout
+     * 
+     * @return Response
+     */
     #[Route(path: '/deconnexion', name: 'app_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
-
+/**
+     * forgottrn password
+     * 
+     * @return Response
+     */
     #[Route(path: '/oubli-pass', name: 'forgotten_password')]
     public function forgottenPassword(
         Request $request,

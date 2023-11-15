@@ -21,8 +21,21 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ImagesController extends AbstractController
 {
-
-    #[Route('/trick/{slug}/editImage/{id}', name: 'app_edit_image')]
+  /**
+         * modifier images
+         *
+         * @param integer $id
+         * @param string $slug
+         * @param Request $request
+         * @param EntityManagerInterface $em
+         * @param TricksRepository $trickRepo
+         * @param ImageUrlsRepository $imageRepo
+         * @param SluggerInterface $slugger
+         * 
+         * @return Response
+         *
+    */
+    #[Route('/trick/{slug}/editImage/{id}', name: 'app_edit_image', methods: ['GET','POST'])]
     public function editImage(Request $request, EntityManagerInterface $em, SluggerInterface $slugger,ImageUrlsRepository $imageRepo, TricksRepository $trickRepo, $id, $slug): Response
     {
         $trick = $trickRepo->findOneBySlug($slug);
@@ -54,8 +67,17 @@ class ImagesController extends AbstractController
             'images' => $images
         ]);
     }
-
-    #[Route('/trick/{slug}/deletImage/{id}', name: 'app_delete_image')]
+   /**
+         * Delete images
+         *
+         * @param EntityManagerInterface $em
+         * @param ImageUrlsRepository $imgRepo
+         * @param string $slug
+         * @param integer $id
+         *
+         * @return Response
+    */
+    #[Route('/trick/{slug}/deletImage/{id}', name: 'app_delete_image', methods: ['GET'])]
     public function delete(EntityManagerInterface $em, ImageUrlsRepository $imgRepo, Request $request, $id, $slug): Response
     {
         $image = $imgRepo->findOneBy(["id" => $id]);
@@ -72,8 +94,21 @@ class ImagesController extends AbstractController
             'controller_name' => 'Figures',
         ]);
     }
-
-    #[Route('/trick/{slug}/editpictureTrick/{id}', name: 'app_edit_pictureTrick')]
+  /**
+         * modifier un image
+         *
+         * @param integer $id
+         * @param Request $request
+         * @param EntityManagerInterface $em
+         * @param TricksRepository $trickRepo
+         * @param PictureTrickRepository $pictureTrick
+         * @param SluggerInterface $slugger
+         * @param string $slug
+         * 
+         * @return Response
+         *
+    */
+    #[Route('/trick/{slug}/editpictureTrick/{id}', name: 'app_edit_pictureTrick', methods: ['GET', 'POST'])]
     public function editPictureTrick(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureTrickRepository $pictureTrick, TricksRepository $trickRepo, $slug, $id): Response
     {
         $trick = $trickRepo->findOneBySlug($slug);
@@ -106,8 +141,17 @@ class ImagesController extends AbstractController
             'images' => $images
         ]);
     }
-
-    #[Route('/trick/{slug}/deletPictureTrick/{id}', name: 'app_delete_pictureTrick')]
+   /**
+         * Delete image
+         *
+         * @param EntityManagerInterface $em
+         * @param  PictureTrickRepository $imgRepo
+         * @param string $slug
+         * @param integer $id
+         *
+         * @return Response
+    */
+    #[Route('/trick/{slug}/deletPictureTrick/{id}', name: 'app_delete_pictureTrick', methods: ['GET'])]
     public function deletePictureTrick(EntityManagerInterface $em, PictureTrickRepository $imgRepo, Request $request, $id, $slug): Response
     {
         $image = $imgRepo->findOneBy(["id" => $id]);

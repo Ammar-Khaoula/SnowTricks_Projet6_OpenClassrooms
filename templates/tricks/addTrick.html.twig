@@ -3,7 +3,8 @@
 {% block title %}Figures{% endblock %}
 
 {% block body %}
-<div class="container my-3 bbb">
+<div class="container">
+    <div class="addTrick">
     <h1>Ajouter un trick</h1>
         {{form_start(trickform)}}
         {{ form_widget(trickform._token)}}
@@ -33,6 +34,7 @@
                 <button type="sumbit" class="btn btn-primary">ajouter</button> 
             </div>
         {{ form_end(trickform, {render_rest: false }) }}
+    </div>
 </div>
 
 {% block script %}

@@ -16,7 +16,16 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profil/{id}', name: 'app_profile')]
+      /**
+         * Profil User
+         *
+         * @param integer $id
+         * @param UsersRepository $userRepo
+         * 
+         * @return Response
+         *
+    */
+    #[Route('/profil/{id}', name: 'app_profile', methods: ['GET'])]
     public function index(UsersRepository $userRepo, $id): Response
     {
         $user = $userRepo->findOneById($id);
@@ -24,8 +33,20 @@ class ProfileController extends AbstractController
             'user' => $user,
         ]);
     }
+  /**
+         * modifier profil
+         *
+         * @param integer $id
+         * @param Request $request
+         * @param EntityManagerInterface $em
+         * @param UsersRepository $userRepo
+         * @param SluggerInterface $slugger
+         * @param UserPasswordHasherInterface $userPasswordHasher
 
-        #[Route('/profil/{id}/edit', name: 'app_editProfile')]
+         * @return Response
+         *
+    */
+        #[Route('/profil/{id}/edit', name: 'app_editProfile', methods: ['GET','POST'])]
         public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, UserPasswordHasherInterface $userPasswordHasher, UsersRepository $userRepo, $id): Response
         {
             $user = $userRepo->findOneById($id);

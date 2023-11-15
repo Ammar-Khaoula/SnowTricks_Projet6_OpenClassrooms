@@ -17,7 +17,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+      /**
+         * get tricks
+         *
+         * @param Request $request
+         * @param TricksRepository $repoTrick
+         *
+         * @return Response
+    */
+    #[Route('/', name: 'app_home', methods: ['GET'])]
     public function index(TricksRepository $repoTrick, Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
@@ -28,8 +36,18 @@ class HomeController extends AbstractController
             
         ]);
     }
-  
-    #[Route('/trick/{slug}', name: 'app_single_trick')]
+    /**
+         * get trick by slug
+         *
+         * @param Request $request
+         * @param TricksRepository $repoTrick
+         *  @param CommentsRepository $commentRepo
+         * @param  EntityManagerInterface $em
+         * @param integer $slug
+         *
+         * @return Response
+    */
+    #[Route('/trick/{slug}', name: 'app_single_trick', methods: ['GET'])]
     public function single(TricksRepository $repoTrick, Request $request, EntityManagerInterface $em, CommentsRepository $commentRepo, string $slug): Response
     {
         $trick = $repoTrick->findOneBySlug($slug);

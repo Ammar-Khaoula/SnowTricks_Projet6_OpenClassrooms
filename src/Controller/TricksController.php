@@ -21,9 +21,18 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class TricksController extends AbstractController
 {
+    /**
+     * add trick
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param SluggerInterface $slugger
+     * 
+     * @return Response
+     * 
+     */
 
-    #[Route('/addTricks', name: 'app_ajout_Trick')]
-    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, VideoUrlsRepository $videoRepo): Response
+    #[Route('/addTricks', name: 'app_ajout_Trick', methods: ['GET', 'POST'])]
+    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
         $trick = new Tricks();
         $trickform = $this->createForm(TricksType::class, $trick);
@@ -79,8 +88,19 @@ class TricksController extends AbstractController
         ]);
     }
 
-
-    #[Route('/editTricks/{id}', name: 'app_edit_Trick')]
+    /**
+         * modifier trick
+         *
+         * @param integer $id
+         * @param Request $request
+         * @param EntityManagerInterface $em
+         * @param TricksRepository $trickRepo
+         * @param SluggerInterface $slugger
+         * 
+         * @return Response
+         *
+    */
+    #[Route('/editTricks/{id}', name: 'app_edit_Trick', methods: ['GET', 'POST'])]
     public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, TricksRepository $trickRepo, $id): Response
     {
         $trick = $trickRepo->findOneBy(["id" => $id]);
@@ -140,8 +160,16 @@ class TricksController extends AbstractController
             'trick' => $trick
         ]);
     }
-
-    #[Route('/deleteTricks/{id}', name: 'app_delete_Trick')]
+    /**
+         * Delete trick
+         *
+         * @param EntityManagerInterface $em
+         * @param TricksRepository $trickRepo
+         * @param integer $id
+         *
+         * @return Response
+    */
+    #[Route('/deleteTricks/{id}', name: 'app_delete_Trick', methods: ['GET'])]
     public function delete(EntityManagerInterface $em, TricksRepository $trickRepo, $id): Response
     {
         $trick = $trickRepo->findOneBy(["id" => $id]);
