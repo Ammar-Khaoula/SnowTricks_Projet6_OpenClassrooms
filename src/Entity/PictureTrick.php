@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PictureTrickRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PictureTrickRepository::class)]
 class PictureTrick
@@ -14,6 +15,7 @@ class PictureTrick
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Type()]
     private ?string $name = null;
 
     public function getId(): ?int

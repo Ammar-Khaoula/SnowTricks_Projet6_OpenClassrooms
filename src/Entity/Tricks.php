@@ -27,6 +27,9 @@ class Tricks
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 50,
+        minMessage: 'La description du trick doit contenir minimum {{ limit }} caractères')]
     private ?string $discription = null;
 
 

@@ -31,7 +31,7 @@ class TricksType extends AbstractType
                 ],
             ])
             ->add('pictureTrick', FileType::class,[
-                'label' => 'image principale',
+                'label' => false,
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
@@ -52,7 +52,7 @@ class TricksType extends AbstractType
                 'label' => false, 
             ])
             ->add('imageUrls', FileType::class,[
-                'label' => 'illustrations',
+                'label' => false,
                 'required' => false,
                 'mapped' => false,
                 'multiple' => true,
@@ -70,18 +70,6 @@ class TricksType extends AbstractType
                 'required' => false,
                 'by_reference' => false
             ])
-            /*->add('videoUrls', UrlType::class, [
-                "label" => false,              
-                "required" => false,
-                "mapped" => false, 
-                "constraints" => [
-                    new Url([
-                        "protocols" => ["https",],
-                        "message" => "L'URL n'est pas valide.",
-                    ]),
-    
-                ]
-            ])*/
             
         ;
     }

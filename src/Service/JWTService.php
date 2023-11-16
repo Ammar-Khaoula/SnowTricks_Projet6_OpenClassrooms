@@ -72,7 +72,7 @@ use DateTimeImmutable;
             $array = explode('.', $token);
             $header = json_decode(base64_decode($array[0]), true);
             return $header;
-         }
+        }
         //verified if token expired
         public function isExpired(string $token): bool
         {
@@ -84,7 +84,7 @@ use DateTimeImmutable;
         }
         
         // verified signatur of token
-        public function check(string $token, string $secret):string
+        public function check(string $token, string $secret): bool
         {
             $header = $this->getHeader($token);
             $payload = $this->getPayload($token);

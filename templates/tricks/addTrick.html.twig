@@ -11,18 +11,28 @@
         {{ form_errors(trickform)}}
             <div class="col-10 m-2">
                 <div class="d-flex p-2">
-                    <div class="col-5">{{form_row(trickform.name)}}</div>
-                    <div class="col-3">{{form_row(trickform.categories)}}</div>
+                    <div class="col-5">
+                        <h4> ajouter un nom</h4>
+                        {{form_row(trickform.name)}}
+                    </div>
+                    <div class="col-3">
+                        <h4>ajouter une catégorie</h4>
+                        {{form_row(trickform.categories)}}
+                    </div>
                 </div>
                 <div>
+                    <h4>ajouter une image</h4>
                     {{form_row(trickform.pictureTrick)}}
                 </div>
                 <div>
+                    <h4>ajouter une description</h4>
                     {{form_row(trickform.discription)}}
                 </div>
                 <div>
+                    <h4>ajouter des illustration</h4>
                     {{form_row(trickform.imageUrls)}}
                 </div>
+                <h4>ajouter des vidéos</h4>
                 <button type="button" class="btn btn-primary btn-new" data-collection="#videos">nouveau video</button>
                 <div class"row" id="videos" 
                 data-prototype="{{ include("video/index.html.twig", {trickform: trickform.videoUrls.vars.prototype})|e("html_attr") }}" 
@@ -31,7 +41,7 @@
                         {{ include("video/index.html.twig", {trickform: videos}) }}
                     {% endfor %}
                 </div>
-                <button type="sumbit" class="btn btn-primary">ajouter</button> 
+                <button type="sumbit" class="btn btn-primary" id="addTrickBtn">ajouter</button> 
             </div>
         {{ form_end(trickform, {render_rest: false }) }}
     </div>
