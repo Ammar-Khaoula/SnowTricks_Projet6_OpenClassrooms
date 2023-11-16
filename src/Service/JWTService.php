@@ -92,4 +92,4 @@ use DateTimeImmutable;
             $verifToken = $this->generate($header, $payload, $secret, 0);
             return $token === $verifToken;
         }
- }
+}

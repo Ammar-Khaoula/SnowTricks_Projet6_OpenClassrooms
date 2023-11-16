@@ -38,10 +38,6 @@ class CommentsRepository extends ServiceEntityRepository
         $paginator = new Paginator($query);
         $data = $paginator->getQuery()->getResult();
 
-        //dd($data);
-        /*if(empty($data)){
-            return $result;
-        }*/
         $pages = ceil($paginator->count() / $limit);
 
         $result['data'] = $data;
