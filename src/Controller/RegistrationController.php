@@ -80,7 +80,7 @@ class RegistrationController extends AbstractController
 /**
      * mail verified
      * 
-     * @return Response
+     * @return bool
      */
     #[Route('/verif/{token}', name: 'verify_user', methods: ['GET','POST'])]
     public function verifyUser($token, JWTService $jwt, 

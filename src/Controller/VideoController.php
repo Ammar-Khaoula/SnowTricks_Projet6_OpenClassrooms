@@ -63,7 +63,7 @@ class VideoController extends AbstractController
          * @param TricksRepository $repoTrick
          * @param VideoUrlsRepository $videoRepo
          * 
-         * @return Response
+         * @return bool
          *
     */
     #[Route('/trick/{slug}/editVideo/{id}', name: 'app_editVideo', methods: ['GET','POST'])]
