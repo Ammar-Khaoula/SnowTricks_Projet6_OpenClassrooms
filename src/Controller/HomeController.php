@@ -47,7 +47,7 @@ class HomeController extends AbstractController
          *
          * @return Response
     */
-    #[Route('/trick/{slug}', name: 'app_single_trick', methods: ['GET'])]
+    #[Route('/trick/{slug}', name: 'app_single_trick', methods: ['GET', 'POST'])]
     public function single(TricksRepository $repoTrick, Request $request, EntityManagerInterface $em, CommentsRepository $commentRepo, string $slug): Response
     {
         $trick = $repoTrick->findOneBySlug($slug);

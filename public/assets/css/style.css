@@ -144,6 +144,7 @@
         padding: 20px;
         width: 80%;
         margin: auto;
+        margin-bottom: 60px;
     }
     
     .addComment button {
@@ -159,7 +160,7 @@
         padding: 7px;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
+        margin-bottom: 45px;
     }
     
     .commentsTrick img {
@@ -229,10 +230,6 @@
         background: linear-gradient(to right, #fac273, #9b6d02);
         color: white;
         font-weight: bolder;
-    }
-    
-    .addTrick {
-        margin-top: 60px;
     }
     /******************registration*****************/
     
@@ -348,6 +345,38 @@
     
     .linkEditTrick a {
         margin: 5px;
+    }
+    /******************add trick*****************/
+    
+    .addTrick {
+        margin-top: 60px;
+    }
+    
+    .addTrick h1 {
+        text-align: center;
+        color: #9b6d02;
+        margin: 20px;
+    }
+    
+    .addTrick h4 {
+        color: #73534C;
+        text-transform: capitalize;
+    }
+    
+    .addTrick button {
+        margin: 15px;
+        font-weight: bolder;
+        text-transform: capitalize;
+    }
+    
+    #addTrickBtn {
+        display: flex;
+        justify-content: center;
+        width: 40%;
+        margin: auto;
+        background: linear-gradient(to right, #fac273, #9b6d02);
+        border: 0px solid black;
+        border-radius: 5px;
     }
     /*************footer****/
     

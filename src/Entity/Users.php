@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette email')]
@@ -22,6 +23,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email(
+        message: '{{ value }} n\'est pas une adresse email valide',
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -31,10 +35,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Length(
+        min: 6,
+        minMessage: 'Votre mot de passe doit contenir minimum {{ limit }} caractères'
+    )]
     private ?string $password = null;
 
 
     #[ORM\Column(length: 100, unique: true)]
+    #[Assert\Length(
+        min: 4,
+        minMessage: 'Doit contenir minimum {{ limit }} caractères'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(options: ['default' =>'CURRENT_TIMESTAMP'])]
