@@ -77,12 +77,8 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-/**
-     * mail verified
-     * 
-     * @return bool
-     */
-    #[Route('/verif/{token}', name: 'verify_user', methods: ['GET','POST'])]
+
+    #[Route('/verif/{token}', name: 'verify_user')]
     public function verifyUser($token, JWTService $jwt, 
     UsersRepository $usersRepository, EntityManagerInterface $entityManager): Response
     {
