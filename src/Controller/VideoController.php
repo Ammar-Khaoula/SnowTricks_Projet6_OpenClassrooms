@@ -55,7 +55,7 @@ class VideoController extends AbstractController
     }
 
     #[Route('/trick/{slug}/editVideo/{id}', name: 'app_editVideo', methods: ['GET', 'POST'])]
-    public function edit(Request $request, EntityManagerInterface $em, TricksRepository $repoTrick, VideoUrlsRepository $videoRepo, $slug, $id): Response
+    public function edit(Request $request, EntityManagerInterface $em, TricksRepository $repoTrick, VideoUrlsRepository $videoRepo, string $slug, int $id): Response
     {
         $trick = $repoTrick->findOneBySlug($slug);
 
