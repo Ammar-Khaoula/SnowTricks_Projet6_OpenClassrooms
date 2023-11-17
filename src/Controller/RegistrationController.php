@@ -77,13 +77,9 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-/**
-     * mail verified
-     * 
-     * @return Response
-     */
-    #[Route('/verif/{token}', name: 'verify_user', methods: ['GET','POST'])]
-    public function verifyUser($token, JWTService $jwt, 
+
+    #[Route('/verif/{token}', name: 'verify_user', methods: ['GET', 'POST'])]
+    public function verifyUser(string $token, JWTService $jwt, 
     UsersRepository $usersRepository, EntityManagerInterface $entityManager): Response
     {
         //verified if token is valid and is not expir and is not edit

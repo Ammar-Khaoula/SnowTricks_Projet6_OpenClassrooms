@@ -53,21 +53,9 @@ class VideoController extends AbstractController
             'trickform' => $trickform->createView(),
         ]);
     }
-    /**
-         * modifier videos
-         *
-         * @param integer $id
-         * * @param string $slug
-         * @param Request $request
-         * @param EntityManagerInterface $em
-         * @param TricksRepository $repoTrick
-         * @param VideoUrlsRepository $videoRepo
-         * 
-         * @return Response
-         *
-    */
-    #[Route('/trick/{slug}/editVideo/{id}', name: 'app_editVideo', methods: ['GET','POST'])]
-    public function edit(Request $request, EntityManagerInterface $em, TricksRepository $repoTrick, VideoUrlsRepository $videoRepo, $slug, $id): Response
+
+    #[Route('/trick/{slug}/editVideo/{id}', name: 'app_editVideo', methods: ['GET', 'POST'])]
+    public function edit(Request $request, EntityManagerInterface $em, TricksRepository $repoTrick, VideoUrlsRepository $videoRepo, string $slug, int $id): Response
     {
         $trick = $repoTrick->findOneBySlug($slug);
 
