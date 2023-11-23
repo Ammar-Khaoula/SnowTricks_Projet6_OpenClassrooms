@@ -130,6 +130,15 @@
     margin-bottom: 20px;
 }
 
+.content {
+    width: 95%;
+    margin: 20px auto;
+}
+
+.content p {
+    padding: 10px;
+}
+
 .comment p {
     font-size: 14px;
 }

@@ -29,7 +29,7 @@ class HomeController extends AbstractController
     public function index(TricksRepository $repoTrick, Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
-        $tricks = $repoTrick->findTricksPaginated($page, 10);
+        $tricks = $repoTrick->findTricksPaginated($page, 9);
 
         return $this->render('home/index.html.twig', [
             'tricks' => $tricks,
