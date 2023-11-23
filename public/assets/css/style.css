@@ -98,7 +98,7 @@
         text-transform: capitalize;
         text-align: center;
         border: 0px solid black;
-        box-shadow: 1px 1px 1px 1px black;
+        box-shadow: 1px 1px 1px 1px #b8e1f8;
         width: 30%;
         margin: auto;
         background-color: #c1e2f6;
@@ -136,6 +136,18 @@
         border: 1px solid black;
         width: 70px;
         padding-left: 5px;
+    }
+    
+    .content {
+        border: 1px solid black;
+        width: 80%;
+        margin: 40px auto;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .content p {
+        padding: 20px;
     }
     
     .addComment {
@@ -195,6 +207,7 @@
         box-shadow: 1px 2px 2px 1px rgb(190, 190, 190);
         background-color: rgb(239, 236, 236);
         width: 60%;
+        margin-top: 100px;
     }
     
     .profilUser {
@@ -337,7 +350,7 @@
     
     .linkEditTrick {
         border: 0px solid black;
-        box-shadow: 0px 1px 0px 1px black;
+        box-shadow: 0px 1px 0px 1px rgb(125, 125, 125);
         width: 80px;
         background-color: #f6f8fa;
         padding: 5px;
@@ -345,6 +358,17 @@
     
     .linkEditTrick a {
         margin: 5px;
+    }
+    
+    .midea {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-top: 100px;
+    }
+    
+    .editContent {
+        margin: 30px auto;
     }
     /******************add trick*****************/
     
