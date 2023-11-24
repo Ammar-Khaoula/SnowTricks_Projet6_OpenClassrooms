@@ -33,7 +33,7 @@
                 </div>
                 {% if app.user %}
                   <div>
-                    <a href="{{ path('app_edit_Trick', {id: trick.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="{{ path('app_edit_Trick', {slug: trick.slug}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a href="{{ path('app_delete_Trick', {id: trick.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                   </div>
                 {% endif %}

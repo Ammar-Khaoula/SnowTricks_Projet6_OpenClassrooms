@@ -81,9 +81,15 @@
     justify-content: space-around;
 }
 
+.linkProfil {
+    display: flex;
+    flex-direction: column;
+}
+
 .linkProfil .btnProfil {
     margin: auto 20px;
     padding: 5px;
+    margin-bottom: 10px;
 }
 
 
@@ -126,7 +132,7 @@
 }
 
 .mediaTrick {
-    width: 80%;
+    width: 250;
     margin-bottom: 20px;
 }
 
@@ -141,4 +147,8 @@
 
 .comment p {
     font-size: 14px;
+}
+
+.footer {
+    top: 15px;
 }

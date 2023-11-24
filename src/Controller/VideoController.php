@@ -73,7 +73,7 @@ class VideoController extends AbstractController
             
             $this->addFlash('success', 'La vidéo a bien été modifier');
 
-            return $this->redirectToRoute('app_single_trick', ['slug' => $slug]);
+            return $this->redirectToRoute('app_edit_Trick', ['slug' => $slug]);
         }
 
         return $this->render('video/editVideo.html.twig', [
@@ -100,7 +100,7 @@ class VideoController extends AbstractController
         $em->flush();
 
         $this->addFlash('success', 'video supprimer avec succés');
-        return $this->redirectToRoute('app_single_trick', ['slug' => $slug]);
+        return $this->redirectToRoute('app_edit_Trick', ['slug' => $slug]);
 
         return $this->render('video/index.html.twig', [
             'controller_name' => 'Figures',

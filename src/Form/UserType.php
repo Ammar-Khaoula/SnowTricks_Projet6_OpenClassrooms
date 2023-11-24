@@ -18,7 +18,7 @@ class UserType extends AbstractType
     {
         $builder
         ->add('avatar', FileType::class,[
-            'label' => 'ajouter un photo',
+            'label' => 'ajouter une photo',
             'required' => false,
             'mapped' => false,
             'constraints' => [

@@ -91,7 +91,7 @@ class TricksController extends AbstractController
     /**
          * modifier trick
          *
-         * @param integer $id
+         * @param string $slug
          * @param Request $request
          * @param EntityManagerInterface $em
          * @param TricksRepository $trickRepo
@@ -100,10 +100,10 @@ class TricksController extends AbstractController
          * @return Response
          *
     */
-    #[Route('/editTricks/{id}', name: 'app_edit_Trick', methods: ['GET', 'POST'])]
-    public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, TricksRepository $trickRepo, $id): Response
+    #[Route('/editTricks/{slug}', name: 'app_edit_Trick', methods: ['GET', 'POST'])]
+    public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, TricksRepository $trickRepo, $slug): Response
     {
-        $trick = $trickRepo->findOneBy(["id" => $id]);
+        $trick = $trickRepo->findOneBy(["slug" => $slug]);
         $trickform = $this->createForm(TricksType::class, $trick);
         $trickform->handleRequest($request);
         
