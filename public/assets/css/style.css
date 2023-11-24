@@ -8,6 +8,10 @@
         width: 50px;
         height: 40px;
     }
+    
+    .nav-item {
+        font-weight: bolder;
+    }
     /**************homePage**************/
     
     .homePageNav {
@@ -129,7 +133,7 @@
     }
     
     .mediaTrick {
-        width: 30%;
+        width: 250px;
     }
     
     .linkSinglePage {
@@ -243,6 +247,10 @@
         background: linear-gradient(to right, #fac273, #9b6d02);
         color: white;
         font-weight: bolder;
+    }
+    
+    .editProfil {
+        margin-top: 100px;
     }
     /******************registration*****************/
     
@@ -403,6 +411,11 @@
         border-radius: 5px;
     }
     /*************footer****/
+    
+    .footer {
+        position: relative;
+        top: 40px;
+    }
     
     #footer {
         color: #9b6d02;

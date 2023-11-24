@@ -59,7 +59,7 @@ class ImagesController extends AbstractController
                 $em->flush();
 
             $this->addFlash('success', 'image modifier avec succés');
-            return $this->redirectToRoute('app_single_trick', ['slug' => $slug]);
+            return $this->redirectToRoute('app_edit_Trick', ['slug' => $slug]);
         }
 
         return $this->render('images/editImage.html.twig', [
@@ -88,7 +88,7 @@ class ImagesController extends AbstractController
         $em->flush();
 
         $this->addFlash('success', 'image supprimer avec succés');
-        return $this->redirectToRoute('app_single_trick', ['slug' => $slug]);
+        return $this->redirectToRoute('app_edit_Trick', ['slug' => $slug]);
 
         return $this->render('tricks/ajout.html.twig', [
             'controller_name' => 'Figures',
