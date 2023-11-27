@@ -203,6 +203,11 @@
     .comment p {
         font-size: 18px;
     }
+    
+    .paginations {
+        display: flex;
+        justify-content: center;
+    }
     /****************profilUser***************/
     
     .profilUsers {

@@ -36,41 +36,5 @@ class HomeController extends AbstractController
             
         ]);
     }
-    /**
-         * get trick by slug
-         *
-         * @param Request $request
-         * @param TricksRepository $repoTrick
-         *  @param CommentsRepository $commentRepo
-         * @param  EntityManagerInterface $em
-         * @param integer $slug
-         *
-         * @return Response
-    */
-    #[Route('/trick/{slug}', name: 'app_single_trick', methods: ['GET', 'POST'])]
-    public function single(TricksRepository $repoTrick, Request $request, EntityManagerInterface $em, CommentsRepository $commentRepo, string $slug): Response
-    {
-        $trick = $repoTrick->findOneBySlug($slug);
-
-        $comment = new Comments;
-        $comment->setTrick($trick);
-        $comment->setAuthor($this->getUser());
-        $commentForm = $this->createForm(CommentType::class, $comment);
-        $commentForm->handleRequest($request);
-        if($commentForm->isSubmitted() && $commentForm->isValid()){
-            $em->persist($comment);          
-            $em->flush();
-
-            $this->addFlash('success', 'commentaire ajouté avec succés');
-            return $this->redirectToRoute('app_single_trick', ['slug' =>$trick->getSlug()]);
-        }
-        $page = $request->query->getInt('page', 1);
-        $paginatedComment = $commentRepo->findCommentPaginated($page, $trick->getSlug(), 10);
-
-        return $this->render('home/single.html.twig', [
-            'commentForm' => $commentForm->createView(),
-            'trick' => $trick,
-            'paginatedComment' => $paginatedComment
-        ]);
-    }
+ 
 }
