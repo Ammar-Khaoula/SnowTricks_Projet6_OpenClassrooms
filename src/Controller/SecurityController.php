@@ -23,7 +23,7 @@ class SecurityController extends AbstractController
      * 
      * @return Response
      */
-    #[Route(path: '/connexion', name: 'app_login')]
+    #[Route(path: '/connexion', name: 'app_login' , methods: ['GET', 'POST', 'PUT'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
 
@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
      * 
      * @return Response
      */
-    #[Route(path: '/deconnexion', name: 'app_logout')]
+    #[Route(path: '/deconnexion', name: 'app_logout' , methods: ['GET', 'POST', 'PUT'])]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
@@ -51,7 +51,7 @@ class SecurityController extends AbstractController
      * 
      * @return Response
      */
-    #[Route(path: '/oubli-pass', name: 'forgotten_password')]
+    #[Route(path: '/oubli-pass', name: 'forgotten_password', methods: ['GET', 'POST', 'PUT'])]
     public function forgottenPassword(
         Request $request,
         UsersRepository $usersRepository,
@@ -102,7 +102,7 @@ class SecurityController extends AbstractController
         ]);
     }
     
-    #[Route(path: '/oubli-pass/{token}', name: 'reset_pass')]
+    #[Route(path: '/oubli-pass/{token}', name: 'reset_pass', methods: ['GET', 'POST', 'PUT'])]
         public function resetPass(
             string $token,
             Request $request,

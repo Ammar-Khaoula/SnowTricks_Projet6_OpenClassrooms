@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
      * 
      * @return Response
      */
-    #[Route('/register', name: 'app_register')]
+    #[Route('/register', name: 'app_register', methods: ['GET', 'POST', 'PUT'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, 
     EntityManagerInterface $entityManager, SendMailService $mail, JWTService $jwt): Response
     {
@@ -105,7 +105,7 @@ class RegistrationController extends AbstractController
      * 
      * @return Response
      */
-    #[Route('/renoiverif', name: 'resend_verif')]
+    #[Route('/renoiverif', name: 'resend_verif', methods: ['GET', 'POST', 'PUT'])]
     public function resendVerif(JWTService $jwt, SendMailService $mail,
     UsersRepository $usersRepository): Response
     {
